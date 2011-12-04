@@ -1,0 +1,7 @@
+## Interface: 40300
+## Title: NecroticTracker
+## Notes: tracks necrotic strike like a regular debuff
+## Author: burial
+## Version: 1
+
+main.lua
