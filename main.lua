@@ -14,19 +14,14 @@ end
 local NecroticStrike = GetSpellInfo(73975)
 
 hooksecurefunc('AuraButton_Update', function(buttonName, index, filter)
-  local name = UnitAura('player', index, filter)
+  if UnitAura('player', index, filter) ~= NecroticStrike then return end
 
-  if name ~= NecroticStrike then return end
+  local buff = _G[ buttonName .. index ]
+  local absorption = GetNecroticStrikeAbsorption(buff)
 
-  local buffName = buttonName .. index
-  local buff = _G[ buffName ]
-
-  if buff and buff.count then
-    local absorption = GetNecroticStrikeAbsorption(buff)
-    if absorption then
-      buff.count:SetText(short(absorption))
-      buff.count:Show()
-      return true
-    end
+  if absorption then
+    buff.count:SetText(short(absorption))
+    buff.count:Show()
+    return true
   end
 end)
